@@ -1,0 +1,405 @@
+:root {
+    /* Vintage Palette */
+    --primary-color: #9e2a2b;
+    /* Deep muted red */
+    --secondary-color: #b06d79;
+    /* Dusty rose */
+    --accent-color: #d4af37;
+    /* Antique Gold */
+    --bg-color: #f8f5e6;
+    /* Parchment Cream */
+    --text-color: #4a3b32;
+    /* Sepia Dark Brown */
+    --paper-shadow: rgba(74, 59, 50, 0.15);
+
+    --font-heading: 'Pinyon Script', cursive;
+    --font-body: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(#e6e2d3 1px, transparent 1px),
+        radial-gradient(#e6e2d3 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+/* Pink Tint Overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 192, 203, 0.05);
+    /* 5% Pink */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Vintage Elements Overlay */
+.vintage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Vintage Stamp Watermark */
+.vintage-overlay::before {
+    content: "Post Card";
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-family: var(--font-body);
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    opacity: 0.03;
+    /* Very subtle */
+    border: 3px solid var(--text-color);
+    padding: 10px 20px;
+    transform: rotate(-15deg);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* Corner Flourish (CSS Border) */
+.vintage-overlay::after {
+    content: "";
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    border-bottom: 2px solid var(--text-color);
+    border-left: 2px solid var(--text-color);
+    opacity: 0.05;
+    border-radius: 0 0 0 50px;
+}
+
+/* Vignette Effect (refined) */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 150px rgba(74, 59, 50, 0.2);
+    pointer-events: none;
+    z-index: 3;
+    /* Above tint */
+}
+
+.container {
+    background: #fffdf5;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 10;
+    max-width: 90%;
+    width: 500px;
+    text-align: center;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 20px 40px -10px rgba(74, 59, 50, 0.1);
+    /* Softer shadow */
+    border: 1px solid #e6dec5;
+    transition: transform 0.3s ease;
+}
+
+/* Pseudo-elements for "Stacked Paper" look */
+.container::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 2px solid var(--accent-color);
+    pointer-events: none;
+    opacity: 0.4;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.container:hover {
+    /* transform: translateY(-2px); Conflict with animation, removing hover move */
+    box-shadow:
+        0 8px 12px rgba(0, 0, 0, 0.08),
+        0 25px 50px -10px rgba(74, 59, 50, 0.15);
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.active {
+    display: flex !important;
+    opacity: 1;
+    pointer-events: all;
+    animation: fadeScale 0.8s ease-out;
+}
+
+@keyframes fadeScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+    font-weight: 400;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+/* Premium Name Styling */
+.premium-name {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    /* Gold */
+    font-size: 1.3em;
+    display: block;
+    /* Make it stand out on its own line if needed, or inline */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Vintage Input: Underlined style */
+input {
+    width: 100%;
+    padding: 10px 5px;
+    border: none;
+    border-bottom: 2px solid var(--secondary-color);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-style: normal;
+    /* ALERT: Explicitly Normal */
+    color: var(--primary-color);
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(74, 59, 50, 0.4);
+    font-style: normal;
+    /* ALERT: Explicitly Normal */
+    font-size: 1.1rem;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Vintage Buttons */
+button {
+    padding: 12px 35px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    /* Little round corners */
+    background: transparent;
+    color: var(--primary-color);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 4px 15px rgba(158, 42, 43, 0.2);
+}
+
+button:disabled {
+    border-color: #ccc;
+    color: #ccc;
+    background: transparent;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 1.5rem;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Yes Button: Gold Accent */
+#yes-btn {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--bg-color);
+}
+
+#yes-btn:hover {
+    background: #8a2425;
+    transform: scale(1.05);
+}
+
+/* No Button: Muted */
+#no-btn {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+#no-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+.cute-gif img {
+    max-width: 160px;
+    margin-top: 1.5rem;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    /* Polaroid tilt */
+}
+
+#quotes-container {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 2rem;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    line-height: 1.2;
+}
+
+/* Mini Hearts Showering */
+.heart {
+    position: absolute;
+    width: 10px;
+    /* Mini size */
+    height: 10px;
+    background: var(--secondary-color);
+    /* Soft dusty pink */
+    transform: rotate(45deg);
+    /* Diamond shape base */
+    animation: shower 10s linear infinite;
+    /* SMOOTH long fall */
+    opacity: 0;
+    z-index: 0;
+}
+
+/* Pseudo-elements to make it a heart shape */
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -5px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -5px;
+}
+
+@keyframes shower {
+    0% {
+        transform: translateY(-10vh) rotate(45deg) scale(0.5);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(45deg) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Ensure Emojis Render Correctly */
+.confetti {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    pointer-events: none;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

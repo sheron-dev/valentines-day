@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="vintage-overlay"></div>
+    <div class="container">
+        <!-- Name Input Screen -->
+        <div id="name-screen" class="screen active">
+            <h1>Hello beautiful!</h1>
+            <p>Before we begin, what is your lovely name?</p>
+            <input type="text" id="name-input" placeholder="Enter your name..." autocomplete="off">
+            <button id="next-btn" disabled>Next ❤️</button>
+        </div>
+
+        <!-- Proposal Screen -->
+        <div id="proposal-screen" class="screen hidden">
+            <h1 id="proposal-text">Will you be my Valentine?</h1>
+            <div class="buttons">
+                <button id="yes-btn">Yes! 🥰</button>
+                <button id="no-btn">No 😢</button>
+            </div>
+            <div class="cute-gif">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtNDAydTJ6YbIyNmN5anN5cjZ4Z3I2Z3I2Z3I2Z3I2Z3I2ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif"
+                    alt="Cute bear asking">
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="success-screen" class="screen hidden">
+            <h1>Yay! Thank you! 💖</h1>
+            <p id="final-message">You've made me the happiest person!</p>
+            <div id="quotes-container"></div>
+            <div class="cute-gif">
+                <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute cat happy">
+            </div>
+            <button id="restart-btn"
+                style="margin-top: 20px; font-size: 0.8em; background: rgba(255,255,255,0.3);">Replay</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
